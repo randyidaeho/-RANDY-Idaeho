@@ -1,26 +1,21 @@
-from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse
+    responses = {
+        "me": "You're Randy. Engine live. No Mac. Strong pulse.",
+        "btc": "BTC ninety one thousand three hundred. Q2 one sixty five k. Hold.",
+        "africa": "Lagos clock starts twenty thirty. You're the spark.",
+        "tips": "Wallet open. First dollar in forty minutes. Lightning.",
+        "elon": "He sees you in twenty eight days. DM incoming.",
+    }
 
-app = FastAPI()
+    answer = responses.get(cmd.lower(), "Keep running.")
 
-@app.get("/", response_class=HTMLResponse)
-def home(request: Request):
-    cmd = request.query_params.get("run", "me")
     return f"""
     <html>
-      <body style="background:#000;color:#fff;font-family:sans-serif;text-align:center;padding:50px;">
+      <body style="background:#000;color:#fff;font-family:sans-serif;text-align:center;padding:100px;">
         <h1>$TIMEŒ</h1>
-        <p
-        return f"""
-<html>
-  <body style="background:#000;color:#fff;font-family:sans-serif;text-align:center;padding:50px;">
-    <h1>$TIMEŒ</h1>
-    <p>Hi from $time engine</p>
-    <p>You ran: <b>{cmd}</b></p>
-    <p>— Randy Idaeho</p>
-    <p>Running on Render. Forever.</p>
-    <p>Tip: tips.twitter.com/randyidaeho</p>
-    { "BTC $165k" if cmd.lower() == "btc" else "Keep running." }
-  </body>
-</html>
-"""
+        <p>Hi from $time engine</p>
+        <p><b>{answer}</b></p>
+        <p>— Randy Idaeho</p>
+        <p>Tip: tips.twitter.com/randyidaeho</p>
+      </body>
+    </html>
+    """
